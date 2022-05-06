@@ -69,3 +69,18 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 - ```cryptoshares-cli getmasternodestatus```  
 
 **Сongratulations you did it!**
+
+
+# Guide for CRYPTOSHARES v1.0.1 MasterNode Update:
+The instructions below are designed for users currently running an older version of CRYPTOSHARES v1.0.0 need update to v1.0.1
+
+
+```
+wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-mn-update.sh
+
+sudo chmod +x shares-mn-update.sh
+
+./shares-mn-update.sh
+```
+
+***
