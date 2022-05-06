@@ -131,7 +131,7 @@ fi
 cd ~
 rm -rf /usr/local/bin/cryp*
 wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.1/shares-1.0.1-linux.tar.gz
-tar -xzvf shares-1.0.0-linux.tar.gz
+tar -xzvf shares-1.0.1-linux.tar.gz
 sudo chmod -R 755 cryptoshares-cli
 sudo chmod -R 755 cryptosharesd
 cp -p -r cryptosharesd /usr/local/bin
