@@ -1,5 +1,5 @@
 #!/bin/bash
-# CRYPTOSHARES Masternode Setup Script V1.0.1 for Ubuntu LTS
+# CRYPTOSHARES Masternode Setup Script V1.0.2 for Ubuntu LTS
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
@@ -47,7 +47,7 @@ function stop_daemon {
 genkey=$1
 clear
 
-echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V1.0.1--------+
+echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V1.0.2--------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
@@ -130,8 +130,8 @@ fi
 #Installing Daemon
 cd ~
 rm -rf /usr/local/bin/cryp*
-wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.1/shares-1.0.1-linux.tar.gz
-tar -xzvf shares-1.0.1-linux.tar.gz
+wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.2/shares-1.0.2-linux.tar.gz
+tar -xzvf shares-1.0.2-linux.tar.gz
 sudo chmod -R 755 cryptoshares-cli
 sudo chmod -R 755 cryptosharesd
 cp -p -r cryptosharesd /usr/local/bin
@@ -179,7 +179,7 @@ done
     cryptoshares-cli stop
     sleep 5
 cd ~/.cryptoshares && rm -rf blocks chainstate sporks zerocoin
-cd ~/.cryptoshares && wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.1/bootstrap.zip
+cd ~/.cryptoshares && wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.2/bootstrap.zip
 cd ~/.cryptoshares && unzip bootstrap.zip
 sudo rm -rf ~/.cryptoshares/bootstrap.zip
 
