@@ -76,6 +76,8 @@ The instructions below are designed for users currently running an older version
 
 
 ```
+rm -rf shares-mn-update.sh
+
 wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-mn-update.sh
 
 sudo chmod +x shares-mn-update.sh
