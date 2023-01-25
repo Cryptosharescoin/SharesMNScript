@@ -71,8 +71,8 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 **Сongratulations you did it!**
 
 
-# Guide for CRYPTOSHARES v1.0.2 MasterNode Update:
-The instructions below are designed for users currently running an older version of CRYPTOSHARES v1.0.1 need update to v1.0.2
+# Guide for CRYPTOSHARES v1.1.0 MasterNode Update:
+The instructions below are designed for users currently running an older version of CRYPTOSHARES v1.0.2 need update to v1.1.0
 
 
 ```

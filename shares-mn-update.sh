@@ -20,7 +20,7 @@ function stop_daemon {
 }
 
 
-echo "Your CRYPTOSHARES Masternode Will be Updated To The Latest Version v1.0.2 Now" 
+echo "Your CRYPTOSHARES Masternode Will be Updated To The Latest Version v1.1.0 Now" 
 sudo apt-get -y install unzip
 
 #remove crontab entry to prevent daemon from starting
@@ -30,10 +30,10 @@ crontab -l | grep -v 'sharesauto.sh' | crontab -
 stop_daemon
 
 rm -rf /usr/local/bin/cryptoshares*
-mkdir SHARES_1.0.2
-cd SHARES_1.0.2
-wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.2/shares-1.0.2-linux.tar.gz
-tar -xzvf shares-1.0.2-linux.tar.gz
+mkdir SHARES_1.1.0
+cd SHARES_1.1.0
+wget https://github.com/Cryptosharescoin/shares/releases/download/1.1.0/shares-1.1.0-linux.tar.gz
+tar -xzvf shares-1.1.0-linux.tar.gz
 mv cryptosharesd /usr/local/bin/cryptosharesd
 mv cryptoshares-cli /usr/local/bin/cryptoshares-cli
 chmod +x /usr/local/bin/cryptoshares*
@@ -43,11 +43,11 @@ rm -rf ~/.cryptoshares/sporks
 rm -rf ~/.cryptoshares/zerocoin
 rm -rf ~/.cryptoshares/peers.dat
 cd ~/.cryptoshares/
-wget https://github.com/Cryptosharescoin/shares/releases/download/1.0.2/bootstrap.zip
+wget https://github.com/Cryptosharescoin/shares/releases/download/1.1.0/bootstrap.zip
 unzip bootstrap.zip
 
 cd ..
-rm -rf ~/.cryptoshares/bootstrap.zip ~/SHARES_1.0.2
+rm -rf ~/.cryptoshares/bootstrap.zip ~/SHARES_1.1.0
 
 # add new nodes to config file
 sed -i '/addnode/d' ~/.cryptoshares/cryptoshares.conf
