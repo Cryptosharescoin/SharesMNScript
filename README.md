@@ -33,10 +33,10 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 - ```sudo apt-get install -y git-core```  
 
 ##### 3. Clone MN setup script: 
-- ```git clone https://github.com/Cryptosharescoin/MNScript.git```  
+- ```git clone https://github.com/Cryptosharescoin/SharesMNScript.git```  
 
 ##### 4. Start MN setup script: 
-- ```cd MNScript && chmod +x ./shares-mn.sh && ./shares-mn.sh```
+- ```cd SharesMNScript && chmod +x ./shares-mn.sh && ./shares-mn.sh```
    
 **Now ask for VPS Public IP Address** 
 
@@ -44,7 +44,7 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 ##### 5. Copy masternode private key from VPS console window and pres "Enter":
 
 
-- to check VPS daemon status, type: ```cryptoshares-cli getinfo```
+- to check VPS daemon status, type: ```shares-cli getinfo```
 
 **Don't close this window!** 	
 
@@ -54,7 +54,7 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 ##### 2. Send Collateral amount of CRYPTOSHARES to copied address
 
 ##### 3. Open console Get MN output and set masternode configuration file and save it
-- ```mn1 VPS_IP:22190 masternode_genkey masternode_output output_index```:
+- ```mn1 VPS_IP:23190 masternode_genkey masternode_output output_index```:
 
 ##### 4. Wait at least 15 confirmation of transaction
 
@@ -65,23 +65,7 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 - ```startmasternode alias false TEST-MN```
 
 ##### 7. Check Masternode Status in VPS:
-- ```cryptoshares-cli startmasternode local false``` 
-- ```cryptoshares-cli getmasternodestatus```  
+- ```shares-cli startmasternode local false``` 
+- ```shares-cli getmasternodestatus```  
 
 **Сongratulations you did it!**
-
-# Guide for CRYPTOSHARES v1.2.0 MasterNode Update:
-The instructions below are designed for users currently running an older version of CRYPTOSHARES v1.1.0 need update to v1.2.0
-
-
-```
-rm -rf shares-mn-update.sh
-
-wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-mn-update.sh
-
-sudo chmod +x shares-mn-update.sh
-
-./shares-mn-update.sh
-```
-
-***

@@ -1,5 +1,5 @@
 #!/bin/bash
-# CRYPTOSHARES Masternode Setup Script V1.2.0 for Ubuntu LTS
+# CRYPTOSHARES Masternode Setup Script V2.0.0 for Ubuntu LTS
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
@@ -15,8 +15,8 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 #TCP port
-PORT=22190
-RPC=22191
+PORT=23190
+RPC=23191
 
 #Clear keyboard input buffer
 function clear_stdin { while read -r -t 0; do read -r; done; }
@@ -26,17 +26,17 @@ function delay { echo -e "${GREEN}Sleep for $1 seconds...${NC}"; sleep "$1"; }
 
 #Stop daemon if it's already running
 function stop_daemon {
-    if pgrep -x 'cryptosharesd' > /dev/null; then
-        echo -e "${YELLOW}Attempting to stop cryptosharesd${NC}"
-        cryptoshares-cli stop
+    if pgrep -x 'sharesd' > /dev/null; then
+        echo -e "${YELLOW}Attempting to stop sharesd${NC}"
+        shares-cli stop
         sleep 30
-        if pgrep -x 'cryptosharesd' > /dev/null; then
-            echo -e "${RED}cryptosharesd daemon is still running!${NC} \a"
+        if pgrep -x 'sharesd' > /dev/null; then
+            echo -e "${RED}sharesd daemon is still running!${NC} \a"
             echo -e "${RED}Attempting to kill...${NC}"
-            sudo pkill -9 cryptosharesd
+            sudo pkill -9 sharesd
             sleep 30
-            if pgrep -x 'cryptosharesd' > /dev/null; then
-                echo -e "${RED}Can't stop cryptosharesd! Reboot and try again...${NC} \a"
+            if pgrep -x 'sharesd' > /dev/null; then
+                echo -e "${RED}Can't stop sharesd! Reboot and try again...${NC} \a"
                 exit 2
             fi
         fi
@@ -47,7 +47,7 @@ function stop_daemon {
 genkey=$1
 clear
 
-echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V1.2.0--------+
+echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V2.0.0--------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
@@ -130,29 +130,37 @@ fi
 #Installing Daemon
 cd ~
 rm -rf /usr/local/bin/cryp*
-wget https://github.com/Cryptosharescoin/shares/releases/download/1.2.0/shares-1.2.0-linux.tar.gz
-tar -xzvf shares-1.2.0-linux.tar.gz
-sudo chmod -R 755 cryptoshares-cli
-sudo chmod -R 755 cryptosharesd
-cp -p -r cryptosharesd /usr/local/bin
-cp -p -r cryptoshares-cli /usr/local/bin
+wget https://github.com/Cryptosharescoin/shares/releases/download/v2.0.0/shares-2.0.0-linux.tar.gz
+tar -xzvf shares-2.0.0-linux.tar.gz
+sudo chmod -R 755 shares-cli
+sudo chmod -R 755 sharesd
+cp -p -r sharesd /usr/local/bin
+cp -p -r shares-cli /usr/local/bin
+rm -rf ~/.cryptoshares/blocks
+rm -rf ~/.cryptoshares/chainstate
+rm -rf ~/.cryptoshares/sporks
+rm -rf ~/.cryptoshares/zerocoin
+rm -rf ~/.cryptoshares/peers.dat
 
+sudo mkdir ~/.shares-params
+cd ~/.shares-params && wget https://github.com/Cryptosharescoin/shares/raw/main/params/sapling-output.params && wget https://github.com/Cryptosharescoin/shares/raw/main/params/sapling-spend.params
 	
- cryptoshares-cli stop
+	
+ shares-cli stop
  sleep 5
  #Create datadir
- if [ ! -f ~/.cryptoshares/cryptoshares.conf ]; then 
- 	sudo mkdir ~/.cryptoshares
+ if [ ! -f ~/.shares/shares.conf ]; then 
+ 	sudo mkdir ~/.shares
 	
  fi
 
 cd ~
 clear
-echo -e "${YELLOW}Creating cryptoshares.conf...${NC}"
+echo -e "${YELLOW}Creating shares.conf...${NC}"
 
 # If genkey was not supplied in command line, we will generate private key on the fly
 if [ -z $genkey ]; then
-    cat <<EOF > ~/.cryptoshares/cryptoshares.conf
+    cat <<EOF > ~/.shares/shares.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 server=1
@@ -160,14 +168,14 @@ daemon=1
 
 EOF
 
-    sudo chmod 755 -R ~/.cryptoshares/cryptoshares.conf
+    sudo chmod 755 -R ~/.shares/shares.conf
 
     #Starting daemon first time just to generate masternode private key
-    cryptosharesd
+    sharesd
 sleep 7
 while true;do
     echo -e "${YELLOW}Generating masternode private key...${NC}"
-    genkey=$(cryptoshares-cli createmasternodekey)
+    genkey=$(shares-cli createmasternodekey)
     if [ "$genkey" ]; then
         break
     fi
@@ -175,17 +183,18 @@ sleep 7
 done
     fi
     
-    #Stopping daemon to create cryptoshares.conf
-    cryptoshares-cli stop
+    #Stopping daemon to create shares.conf
+    shares-cli stop
     sleep 5
 cd ~/.cryptoshares && rm -rf blocks chainstate sporks zerocoin
-cd ~/.cryptoshares && wget https://github.com/Cryptosharescoin/shares/releases/download/1.2.0/bootstrap.zip
-cd ~/.cryptoshares && unzip bootstrap.zip
-sudo rm -rf ~/.cryptoshares/bootstrap.zip
+cd ~/.shares && rm -rf blocks chainstate sporks zerocoin
+cd ~/.shares && wget https://github.com/Cryptosharescoin/shares/releases/download/2.0.0/bootstrap.zip
+cd ~/.shares && unzip bootstrap.zip
+sudo rm -rf ~/.shares/bootstrap.zip
 
 	
-# Create cryptoshares.conf
-cat <<EOF > ~/.cryptoshares/cryptoshares.conf
+# Create shares.conf
+cat <<EOF > ~/.shares/shares.conf
 rpcuser=$rpcuser
 rpcpassword=$rpcpassword
 rpcallowip=127.0.0.1
@@ -203,15 +212,16 @@ masternodeaddr=$publicip:$PORT
 masternodeprivkey=$genkey
 addnode=208.167.249.234
 addnode=173.199.119.55
+addnode=104.238.131.131 
 addnode=207.148.18.27
 addnode=45.77.222.79
 addnode=108.61.81.41
 
  
 EOF
-    cryptosharesd -daemon
-#Finally, starting daemon with new cryptoshares.conf
-printf '#!/bin/bash\nif [ ! -f "~/.cryptoshares/cryptoshares.pid" ]; then /usr/local/bin/cryptosharesd -daemon ; fi' > /root/sharesauto.sh
+    sharesd -daemon
+#Finally, starting daemon with new shares.conf
+printf '#!/bin/bash\nif [ ! -f "~/.shares/cryptoshares.pid" ]; then /usr/local/bin/sharesd -daemon ; fi' > /root/sharesauto.sh
 chmod -R 755 /root/sharesauto.sh
 #Setting auto start cron job for CRYPTOSHARES
 if ! crontab -l | grep "sharesauto.sh"; then
@@ -256,20 +266,20 @@ echo -e "
 ${GREEN}...scroll up to see previous screens...${NC}
 Here are some useful commands and tools for masternode troubleshooting:
 ========================================================================
-To view masternode configuration produced by this script in cryptoshares.conf:
-${GREEN}cat ~/.cryptoshares/cryptoshares.conf${NC}
-Here is your cryptoshares.conf generated by this script:
+To view masternode configuration produced by this script in shares.conf:
+${GREEN}cat ~/.shares/shares.conf${NC}
+Here is your shares.conf generated by this script:
 -------------------------------------------------${GREEN}"
 echo -e "${GREEN}SHARES_mn1 $publicip:$PORT $genkey TxId TxIdx${NC}"
-cat ~/.cryptoshares/cryptoshares.conf
+cat ~/.shares/shares.conf
 echo -e "${NC}-------------------------------------------------
-NOTE: To edit cryptoshares.conf, first stop the cryptosharesd daemon,
-then edit the cryptoshares.conf file and save it in nano: (Ctrl-X + Y + Enter),
-then start the cryptosharesd daemon back up:
-to stop:              ${GREEN}cryptoshares-cli stop${NC}
-to start:             ${GREEN}cryptosharesd${NC}
-to edit:              ${GREEN}nano ~/.cryptoshares/cryptoshares.conf${NC}
-to check mn status:   ${GREEN}cryptoshares-cli getmasternodestatus${NC}
+NOTE: To edit shares.conf, first stop the sharesd daemon,
+then edit the shares.conf file and save it in nano: (Ctrl-X + Y + Enter),
+then start the sharesd daemon back up:
+to stop:              ${GREEN}shares-cli stop${NC}
+to start:             ${GREEN}sharesd${NC}
+to edit:              ${GREEN}nano ~/.shares/shares.conf${NC}
+to check mn status:   ${GREEN}shares-cli getmasternodestatus${NC}
 ========================================================================
 To monitor system resource utilization and running processes:
                    ${GREEN}htop${NC}
