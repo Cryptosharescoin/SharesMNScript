@@ -186,7 +186,6 @@ done
     #Stopping daemon to create shares.conf
     shares-cli stop
     sleep 5
-cd ~/.cryptoshares && rm -rf blocks chainstate sporks zerocoin
 cd ~/.shares && rm -rf blocks chainstate sporks zerocoin
 cd ~/.shares && wget https://github.com/Cryptosharescoin/shares/releases/download/2.0.0/bootstrap.zip
 cd ~/.shares && unzip bootstrap.zip
