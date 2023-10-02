@@ -187,7 +187,7 @@ done
     shares-cli stop
     sleep 5
 cd ~/.shares && rm -rf blocks chainstate sporks zerocoin
-cd ~/.shares && wget https://github.com/Cryptosharescoin/shares/releases/download/2.0.0/bootstrap.zip
+cd ~/.shares && wget https://github.com/Cryptosharescoin/shares/releases/download/v2.0.0/bootstrap.zip
 cd ~/.shares && unzip bootstrap.zip
 sudo rm -rf ~/.shares/bootstrap.zip
 
