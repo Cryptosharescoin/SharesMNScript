@@ -41,7 +41,7 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 - ```cd SharesMNScript && chmod +x ./shares-16.04-mn.sh && ./shares-16.04-mn.sh```
  
 ##### For Ubuntu 18.04 & 20.04
-- ```cd SharesMNScript && chmod +x ./shares-mn.sh && ./shares-mn.sh```
+- ```cd SharesMNScript && chmod +x ./shares-18.04-20.04-mn.sh && ./shares-18.04-20.04-mn.sh```
 
    
 **Now ask for VPS Public IP Address** 
