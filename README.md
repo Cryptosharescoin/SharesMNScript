@@ -35,8 +35,14 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 ##### 3. Clone MN setup script: 
 - ```git clone https://github.com/Cryptosharescoin/SharesMNScript.git```  
 
-##### 4. Start MN setup script: 
+
+##### 4. Start MN setup script:
+##### For Ubuntu 16.04
+- ```cd SharesMNScript && chmod +x ./shares-16.04-mn.sh && ./shares-16.04-mn.sh```
+ 
+##### For Ubuntu 18.04 & 20.04
 - ```cd SharesMNScript && chmod +x ./shares-mn.sh && ./shares-mn.sh```
+
    
 **Now ask for VPS Public IP Address** 
 
