@@ -130,8 +130,8 @@ fi
 #Installing Daemon
 cd ~
 rm -rf /usr/local/bin/cryp*
-wget https://github.com/Cryptosharescoin/shares/releases/download/v2.0.0/shares-2.0.0-linux-16.04.tar.gz
-tar -xzvf shares-2.0.0-linux-16.04.tar.gz
+wget https://github.com/Cryptosharescoin/shares/releases/download/2.0.1/shares-2.0.1-linux-16.04.tar.gz
+tar -xzvf shares-2.0.1-linux-16.04.tar.gz
 sudo chmod -R 755 shares-cli
 sudo chmod -R 755 sharesd
 cp -p -r sharesd /usr/local/bin
@@ -187,7 +187,7 @@ done
     shares-cli stop
     sleep 5
 cd ~/.shares && rm -rf blocks chainstate sporks zerocoin
-cd ~/.shares && wget https://github.com/Cryptosharescoin/shares/releases/download/v2.0.0/bootstrap.zip
+cd ~/.shares && https://github.com/Cryptosharescoin/shares/releases/download/2.0.1/bootstrap.zip
 cd ~/.shares && unzip bootstrap.zip
 sudo rm -rf ~/.shares/bootstrap.zip
 
