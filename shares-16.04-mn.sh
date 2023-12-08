@@ -1,5 +1,5 @@
 #!/bin/bash
-# CRYPTOSHARES Masternode Setup Script V2.0.0 for Ubuntu 16.04 LTS
+# CRYPTOSHARES Masternode Setup Script V2.0.1 for Ubuntu 16.04 LTS
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
@@ -47,7 +47,7 @@ function stop_daemon {
 genkey=$1
 clear
 
-echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V2.0.0--------+
+echo -e "${GREEN} ------- CRYPTOSHARES MASTERNODE INSTALLER V2.0.1--------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
@@ -130,17 +130,17 @@ fi
 #Installing Daemon
 cd ~
 rm -rf /usr/local/bin/cryp*
-wget https://github.com/Cryptosharescoin/shares/releases/download/2.0.1/shares-2.0.1-linux-16.04.tar.gz
+wget https://github.com/Cryptosharescoin/shares/releases/download/v2.0.1/shares-2.0.1-linux-16.04.tar.gz
 tar -xzvf shares-2.0.1-linux-16.04.tar.gz
 sudo chmod -R 755 shares-cli
 sudo chmod -R 755 sharesd
 cp -p -r sharesd /usr/local/bin
 cp -p -r shares-cli /usr/local/bin
-rm -rf ~/.cryptoshares/blocks
-rm -rf ~/.cryptoshares/chainstate
-rm -rf ~/.cryptoshares/sporks
-rm -rf ~/.cryptoshares/zerocoin
-rm -rf ~/.cryptoshares/peers.dat
+rm -rf ~/.shares/blocks
+rm -rf ~/.shares/chainstate
+rm -rf ~/.shares/sporks
+rm -rf ~/.shares/zerocoin
+rm -rf ~/.shares/peers.dat
 
 sudo mkdir ~/.shares-params
 cd ~/.shares-params && wget https://github.com/Cryptosharescoin/shares/raw/main/params/sapling-output.params && wget https://github.com/Cryptosharescoin/shares/raw/main/params/sapling-spend.params
@@ -187,7 +187,7 @@ done
     shares-cli stop
     sleep 5
 cd ~/.shares && rm -rf blocks chainstate sporks zerocoin
-cd ~/.shares && https://github.com/Cryptosharescoin/shares/releases/download/2.0.1/bootstrap.zip
+cd ~/.shares && https://github.com/Cryptosharescoin/shares/releases/download/v2.0.1/bootstrap.zip
 cd ~/.shares && unzip bootstrap.zip
 sudo rm -rf ~/.shares/bootstrap.zip
 
