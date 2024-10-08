@@ -76,62 +76,6 @@ This guide will assist you in setting up a CRYPTOSHARES Masternode on a Linux Se
 
 **Сongratulations you did it!**
 
-
-# Guide for CRYPTOSHARES v2.0.1 MasterNode Update:
-The instructions below are designed for users currently running an older version of CRYPTOSHARES v2.0.0 need update to v2.0.1
-
-##### For Ubuntu 16.04
-```
-rm -rf shares-mn-update.sh
-
-wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-16.04-mn-update.sh
-
-sudo chmod +x shares-16.04-mn-update.sh
-
-./shares-16.04-mn-update.sh
-```
-
-##### For Ubuntu 18.04 & 20.04
-```
-rm -rf shares-mn-update.sh
-
-wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-18.04-20.04-mn-update.sh
-
-sudo chmod +x shares-18.04-20.04-mn-update.sh
-
-./shares-18.04-20.04-mn-update.sh
-```
-
-***
-
-# Guide for CRYPTOSHARES v2.2.0 MasterNode Update:
-
-The instructions below are designed for users currently running an older version of CRYPTOSHARES v2.0.1 need update to v2.2.0
-
-##### For Ubuntu 16.04
-```
-rm -rf shares-mn-update.sh
-
-wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-16.04-mn-update.sh
-
-sudo chmod +x shares-16.04-mn-update.sh
-
-./shares-16.04-mn-update.sh
-```
-
-##### For Ubuntu 18.04 & 20.04
-```
-rm -rf shares-mn-update.sh
-
-wget -q https://raw.githubusercontent.com/Cryptosharescoin/MNScript/main/shares-18.04-20.04-mn-update.sh
-
-sudo chmod +x shares-18.04-20.04-mn-update.sh
-
-./shares-18.04-20.04-mn-update.sh
-```
-
-***
-
 ***
 
 # Guide for CRYPTOSHARES v2.3.0 MasterNode Update:
